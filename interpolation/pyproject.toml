@@ -5,6 +5,8 @@ description = "IITP RAS Python class"
 authors = [
     {name = "Andrey Kirkicha",email = "kirkicha.aa@phystech.edu"}
 ]
+homepage = "https://github.com/andreykirkicha/Python_IITP_RAS.git"
+repository = "https://github.com/andreykirkicha/Python_IITP_RAS.git"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -13,7 +15,7 @@ dependencies = [
 ]
 
 [project.scripts]
-test = "tests.py"
+test = "tests.tests:main"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
