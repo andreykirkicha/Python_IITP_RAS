@@ -1,0 +1,20 @@
+[project]
+name = "interpolation"
+version = "0.1.0"
+description = "IITP RAS Python class"
+authors = [
+    {name = "Andrey Kirkicha",email = "kirkicha.aa@phystech.edu"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy (>=2.2.3,<3.0.0)",
+    "matplotlib (>=3.10.0,<4.0.0)"
+]
+
+[project.scripts]
+test = "tests.py"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
