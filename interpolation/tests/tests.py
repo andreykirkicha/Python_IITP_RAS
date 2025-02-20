@@ -24,8 +24,6 @@ def main():
     X, Y = np.meshgrid(x, y)
     Z = F(X, Y)
 
-    print("OOO")
-
     arr_x_int = np.linspace(-np.pi + 0.01, np.pi - 0.01, 100)
     arr_y_int = np.linspace(-np.pi + 0.01, np.pi - 0.01, 100)
     X_int, Y_int = np.meshgrid(arr_x_int, arr_y_int)
@@ -42,6 +40,7 @@ def main():
             Z_int[i, j] = bilinear_interpolation(F, x_int, y_int, x1, x2, y1, y2)
 
     fig = plt.figure(figsize=(16, 10))
+    
     ax1 = fig.add_subplot(121, projection='3d')
     surf1 = ax1.plot_wireframe(X, Y, Z, alpha=0.5, label='Original function')
     points1 = ax1.scatter(X, Y, Z, alpha=0.5)
@@ -56,6 +55,10 @@ def main():
     ax2.set_ylabel('Y')
     ax2.set_zlabel('Z')
     ax2.legend()
+
+    filename = "tests/plots_bilinear.png"
+    plt.savefig(filename)
+    plt.close(fig)
 
     plt.show()
 
