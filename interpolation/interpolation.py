@@ -1,7 +1,17 @@
 from PIL import Image
-import numpy as np
 
 def bilinear_interpolation(img, new_width, new_height):
+    '''
+    Bilinear interpolation algorithm for images.
+
+    Args:
+        img: PIL Image object.
+        new_width: Desired width of the resized image.
+        new_height: Desired height of the resized image.
+
+    Returns:
+        PIL Image object of the resized image.
+    '''
     width, height = img.size
 
     resized_img = Image.new("RGB", (new_width, new_height))

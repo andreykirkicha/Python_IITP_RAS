@@ -1,1 +1,0 @@
-In this section some interpolation methods are implemented using Python.
