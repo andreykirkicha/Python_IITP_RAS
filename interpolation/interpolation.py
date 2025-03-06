@@ -1,7 +1,8 @@
 from PIL import Image
 
+
 def bilinear_interpolation(img, new_width, new_height):
-    '''
+    """
     Bilinear interpolation algorithm for images.
 
     Args:
@@ -11,7 +12,7 @@ def bilinear_interpolation(img, new_width, new_height):
 
     Returns:
         PIL Image object of the resized image.
-    '''
+    """
     width, height = img.size
 
     resized_img = Image.new("RGB", (new_width, new_height))
@@ -37,11 +38,22 @@ def bilinear_interpolation(img, new_width, new_height):
             Q22 = img.getpixel((x2, y2))
 
             for ch in range(3):
-                pix[ch] = int(1 / (x2 - x1) / (y2 - y1) * (Q11[ch] * (x2 - x) * (y2 - y)
-                                                        + Q21[ch] * (x - x1) * (y2 - y)
-                                                        + Q12[ch] * (x2 - x) * (y - y1)
-                                                        + Q22[ch] * (x - x1) * (y - y1))) if (x2 - x1) != 0 and (y2 - y1) != 0 else 0
+                pix[ch] = (
+                    int(
+                        1
+                        / (x2 - x1)
+                        / (y2 - y1)
+                        * (
+                            Q11[ch] * (x2 - x) * (y2 - y)
+                            + Q21[ch] * (x - x1) * (y2 - y)
+                            + Q12[ch] * (x2 - x) * (y - y1)
+                            + Q22[ch] * (x - x1) * (y - y1)
+                        )
+                    )
+                    if (x2 - x1) != 0 and (y2 - y1) != 0
+                    else 0
+                )
 
             resized_img.putpixel((j, i), tuple(pix))
-    
+
     return resized_img
