@@ -6,9 +6,15 @@ from interpolation.interpolation import bilinear_interpolation
 
 @click.command()
 @click.option(
-    "--file-path", default="interpolation/demo/demo_image.jpg", help="Path to original image."
+    "--file-path",
+    default="interpolation/demo/demo_image.jpg",
+    help="Path to original image.",
 )
-@click.option("--result-path", default="interpolation/demo/demo_result.jpg", help="Path to result image.")
+@click.option(
+    "--result-path",
+    default="interpolation/demo/demo_result.jpg",
+    help="Path to result image.",
+)
 @click.option(
     "--scale-ratio",
     default=1,
