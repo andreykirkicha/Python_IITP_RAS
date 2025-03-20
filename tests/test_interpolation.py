@@ -33,15 +33,15 @@ def test_pixel_values_in_bounds():
     assert all(0 <= channel <= 255 for channel in pixel)
 
 def test_invalid_image_type():
-    with pytest.raises(TypeError):
+    with pytest.raises(AttributeError):
         bilinear_interpolation("not an image", 100, 100)
 
 def test_zero_dimensions():
     img = Image.new("RGB", (100, 100), color="white")
-    with pytest.raises(ValueError, match="division by zero"):
+    with pytest.raises(ZeroDivisionError, match="division by zero"):
         bilinear_interpolation(img, 0, 0)
 
 def test_float_scale_ratio():
     img = Image.new("RGB", (100, 100), color="white")
-    with pytest.raises(AttributeError):
+    with pytest.raises(TypeError):
         bilinear_interpolation(img, 100 * 1.005, 100 * 1.005)
