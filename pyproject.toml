@@ -34,3 +34,5 @@ unfixable = []
 [tool.poetry.group.test.dependencies]
 pytest = "^8.3.5"
 
+[tool.poetry.requires-plugins]
+poetry-plugin-export = ">=1.8"

@@ -1,5 +1,7 @@
 .venv/
 .ruff_cache/
+.nox/
+.pytest_cache
 .python-version
 .coverage
 *.pyc
