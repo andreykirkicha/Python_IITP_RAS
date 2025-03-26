@@ -7,12 +7,12 @@ from interpolation.interpolation import bilinear_interpolation
 @click.command()
 @click.option(
     "--file-path",
-    default="interpolation/demo/demo_image.jpg",
+    default="example/example.jpg",
     help="Path to original image.",
 )
 @click.option(
     "--result-path",
-    default="interpolation/demo/demo_result.jpg",
+    default="example/result.jpg",
     help="Path to result image.",
 )
 @click.option(

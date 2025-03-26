@@ -1,6 +1,7 @@
 .venv/
 .ruff_cache/
 .nox/
+.poetry/
 .pytest_cache
 .python-version
 .coverage
