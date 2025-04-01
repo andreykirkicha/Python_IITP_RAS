@@ -11,7 +11,5 @@ Project contains implementation of some image interpolation methods.
 
 .. toctree::
    :maxdepth: 2
-   
-   main
-   reference
-   license
+
+   interpolation.md
