@@ -1,5 +1,9 @@
 # Python IITP RAS
 
+The project contains some useful image interpolation methods implemented as module 'interpolation'.
+
+## Contents
+
 ``` {toctree}
 :maxdepth: 2
 interpolation.md
@@ -7,13 +11,21 @@ reference.md
 license.md
 ```
 
-The project contains implementation of some useful image interpolation methods wrapped into module 'interpolation'.
-
 ## Installation
 
-To install interpolation,
-run this command in your terminal:
+To install interpolation, you need to use poetry.
+Run this command in your terminal from the project directory:
 
 ``` {code-block} console
-   $ pip install interpolation
+   $ poetry install
+```
+
+## License
+
+## Indices and tables
+
+``` {eval-rst}
+* :ref:`genindex`
+* :ref:`py-modindex`
+* :ref:`search`
 ```

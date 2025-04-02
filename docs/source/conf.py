@@ -11,7 +11,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path('../..')))
 
-project = 'Python_IITP_RAS'
+project = 'Python IITP RAS'
 copyright = '2025, Andrey Kirkicha'
 author = 'Andrey Kirkicha'
 release = '0.1.0'

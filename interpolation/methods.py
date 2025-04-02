@@ -6,12 +6,12 @@ def bilinear_interpolation(img, new_width, new_height):
     Bilinear interpolation algorithm for images.
 
     Args:
-        img (PIL.image): Original image.
-        new_width (int): Desired width of the resized image.
-        new_height (int): Desired height of the resized image.
+        img (:mod:`PIL.image`): Original image.
+        new_width (:mod:`int`): Desired width of the resized image.
+        new_height (:mod:`int`): Desired height of the resized image.
 
     Returns:
-        PIL.Image: Resized image.
+        :mod:`PIL.Image` - resized image.
     """
     width, height = img.size
 

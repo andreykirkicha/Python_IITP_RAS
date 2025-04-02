@@ -1,12 +1,14 @@
-# Interpolation
+# Interpolation methods
 
-This project has several interpolation methods implemented such as:
+This project has several interpolation methods implemented. It includes:
 - Bilinear interpolation
 - ...
 
 ## Bilinear interpolation
 
 ``` {eval-rst}
-.. automodule:: interpolation.interpolation
+.. automodule:: interpolation.methods
   :members:
+  :undoc-members:
+  :show-inheritance:
 ```

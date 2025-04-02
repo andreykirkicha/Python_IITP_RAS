@@ -1,7 +1,7 @@
 import pytest
 from PIL import Image
 
-from interpolation.interpolation import bilinear_interpolation
+from interpolation.methods import bilinear_interpolation
 
 
 @pytest.mark.parametrize("w, h, new_w, new_h", [(100, 100, 200, 200), 

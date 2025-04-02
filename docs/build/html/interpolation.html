@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Interpolation &mdash; Python_IITP_RAS 0.1.0 documentation</title>
+  <title>Interpolation methods &mdash; Python IITP RAS 0.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -32,7 +32,7 @@
           
           
           <a href="index.html" class="icon icon-home">
-            Python_IITP_RAS
+            Python IITP RAS
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -43,9 +43,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Interpolation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-interpolation.interpolation">Bilinear interpolation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#interpolation.interpolation.bilinear_interpolation"><code class="docutils literal notranslate"><span class="pre">bilinear_interpolation()</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Interpolation methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-interpolation.methods">Bilinear interpolation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#interpolation.methods.bilinear_interpolation"><code class="docutils literal notranslate"><span class="pre">bilinear_interpolation()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -60,7 +60,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Python_IITP_RAS</a>
+          <a href="index.html">Python IITP RAS</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -68,7 +68,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Interpolation</li>
+      <li class="breadcrumb-item active">Interpolation methods</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/interpolation.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -78,32 +78,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section class="tex2jax_ignore mathjax_ignore" id="interpolation">
-<h1>Interpolation<a class="headerlink" href="#interpolation" title="Link to this heading"></a></h1>
-<p>This project has several interpolation methods implemented such as:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="interpolation-methods">
+<h1>Interpolation methods<a class="headerlink" href="#interpolation-methods" title="Link to this heading"></a></h1>
+<p>This project has several interpolation methods implemented. It includes:</p>
 <ul class="simple">
 <li><p>Bilinear interpolation</p></li>
 <li><p>…</p></li>
 </ul>
-<section id="module-interpolation.interpolation">
-<span id="bilinear-interpolation"></span><h2>Bilinear interpolation<a class="headerlink" href="#module-interpolation.interpolation" title="Link to this heading"></a></h2>
+<section id="module-interpolation.methods">
+<span id="bilinear-interpolation"></span><h2>Bilinear interpolation<a class="headerlink" href="#module-interpolation.methods" title="Link to this heading"></a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="interpolation.interpolation.bilinear_interpolation">
-<span class="sig-prename descclassname"><span class="pre">interpolation.interpolation.</span></span><span class="sig-name descname"><span class="pre">bilinear_interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_height</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/interpolation/interpolation.html#bilinear_interpolation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#interpolation.interpolation.bilinear_interpolation" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="interpolation.methods.bilinear_interpolation">
+<span class="sig-prename descclassname"><span class="pre">interpolation.methods.</span></span><span class="sig-name descname"><span class="pre">bilinear_interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_height</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/interpolation/methods.html#bilinear_interpolation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#interpolation.methods.bilinear_interpolation" title="Link to this definition"></a></dt>
 <dd><p>Bilinear interpolation algorithm for images.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>img</strong> (<em>PIL.image</em>) – Original image.</p></li>
-<li><p><strong>new_width</strong> (<em>int</em>) – Desired width of the resized image.</p></li>
-<li><p><strong>new_height</strong> (<em>int</em>) – Desired height of the resized image.</p></li>
+<li><p><strong>img</strong> (<code class="xref py py-mod docutils literal notranslate"><span class="pre">PIL.image</span></code>) – Original image.</p></li>
+<li><p><strong>new_width</strong> (<code class="xref py py-mod docutils literal notranslate"><span class="pre">int</span></code>) – Desired width of the resized image.</p></li>
+<li><p><strong>new_height</strong> (<code class="xref py py-mod docutils literal notranslate"><span class="pre">int</span></code>) – Desired height of the resized image.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Resized image.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>PIL.Image</p>
+<dd class="field-even"><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">PIL.Image</span></code> - resized image.</p>
 </dd>
 </dl>
 </dd></dl>
