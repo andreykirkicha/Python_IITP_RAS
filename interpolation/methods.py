@@ -1,9 +1,10 @@
+import numpy as np
 from PIL import Image
 
 
-def bilinear_interpolation(img, new_width, new_height):
+def bilinear_interpolation(img, scale_factor):
     """
-    Bilinear interpolation algorithm for images.
+    Performs bilinear image interpolation.
 
     Args:
         img (:mod:`PIL.image`): Original image.
@@ -14,6 +15,9 @@ def bilinear_interpolation(img, new_width, new_height):
         :mod:`PIL.Image` - resized image.
     """
     width, height = img.size
+
+    new_width = width * scale_factor
+    new_height = height * scale_factor
 
     resized_img = Image.new("RGB", (new_width, new_height))
 
@@ -57,3 +61,36 @@ def bilinear_interpolation(img, new_width, new_height):
             resized_img.putpixel((j, i), tuple(pix))
 
     return resized_img
+
+def nearest_neighbour_interpolation(img, scale_factor):
+    """
+    Performs nearest neighbor image interpolation.
+
+    Args:
+        img (:mod:`PIL.Image`): Original image.
+        scale_factor (:mod:`float`): Scaling factor.
+
+    Returns:
+        :mod:`PIL.Image` - resized image.
+    """
+
+    img = np.array(img)
+
+    height, width, channels = img.shape
+    new_height = int(height * scale_factor)
+    new_width = int(width * scale_factor)
+
+    resized_img = np.zeros((new_height, new_width, channels), dtype=img.dtype)
+
+    for i in range(new_height):
+        for j in range(new_width):
+            old_i = int(i / scale_factor)
+            old_j = int(j / scale_factor)
+
+            old_i = min(old_i, height - 1)
+            old_j = min(old_j, width - 1)
+
+            resized_img[i, j] = img[old_i, old_j]
+
+
+    return Image.fromarray(resized_img)
