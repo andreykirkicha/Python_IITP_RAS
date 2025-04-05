@@ -1,13 +1,8 @@
-# Reference
+# API reference
 
-## example.console
+``` {toctree}
+:maxdepth: 2
 
-``` {eval-rst}
-.. automodule:: example.console
-   :members:
-```
-
-``` {eval-rst}
-.. click:: example.console:demo
-   :prog: example
+methods.md
+cli.md
 ```

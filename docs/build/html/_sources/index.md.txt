@@ -6,7 +6,6 @@ The project contains some useful image interpolation methods implemented as modu
 
 ``` {toctree}
 :maxdepth: 2
-interpolation.md
 reference.md
 license.md
 ```
