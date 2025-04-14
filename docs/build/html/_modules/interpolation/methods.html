@@ -40,8 +40,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../interpolation.html">Interpolation methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../reference.html">Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference.html">API reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
 </ul>
 
@@ -70,24 +69,27 @@
            <div itemprop="articleBody">
              
   <h1>Source code for interpolation.methods</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
 
 
 <div class="viewcode-block" id="bilinear_interpolation">
-<a class="viewcode-back" href="../../interpolation.html#interpolation.methods.bilinear_interpolation">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">bilinear_interpolation</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">new_width</span><span class="p">,</span> <span class="n">new_height</span><span class="p">):</span>
+<a class="viewcode-back" href="../../methods.html#interpolation.methods.bilinear_interpolation">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">bilinear_interpolation</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Bilinear interpolation algorithm for images.</span>
+<span class="sd">    Performs bilinear image interpolation.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        img (:mod:`PIL.image`): Original image.</span>
-<span class="sd">        new_width (:mod:`int`): Desired width of the resized image.</span>
-<span class="sd">        new_height (:mod:`int`): Desired height of the resized image.</span>
+<span class="sd">        img (:mod:`PIL.Image`): Original image.</span>
+<span class="sd">        scale_factor (:mod:`float`): Scaling factor.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        :mod:`PIL.Image` - resized image.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">size</span>
+
+    <span class="n">new_width</span> <span class="o">=</span> <span class="n">width</span> <span class="o">*</span> <span class="n">scale_factor</span>
+    <span class="n">new_height</span> <span class="o">=</span> <span class="n">height</span> <span class="o">*</span> <span class="n">scale_factor</span>
 
     <span class="n">resized_img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">new_width</span><span class="p">,</span> <span class="n">new_height</span><span class="p">))</span>
 
@@ -131,6 +133,42 @@
             <span class="n">resized_img</span><span class="o">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">pix</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">resized_img</span></div>
+
+
+<div class="viewcode-block" id="nearest_neighbour_interpolation">
+<a class="viewcode-back" href="../../methods.html#interpolation.methods.nearest_neighbour_interpolation">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">nearest_neighbour_interpolation</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Performs nearest neighbor image interpolation.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        img (:mod:`PIL.Image`): Original image.</span>
+<span class="sd">        scale_factor (:mod:`float`): Scaling factor.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        :mod:`PIL.Image` - resized image.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+    <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">channels</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">new_height</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">height</span> <span class="o">*</span> <span class="n">scale_factor</span><span class="p">)</span>
+    <span class="n">new_width</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="n">scale_factor</span><span class="p">)</span>
+
+    <span class="n">resized_img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">new_height</span><span class="p">,</span> <span class="n">new_width</span><span class="p">,</span> <span class="n">channels</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">img</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">new_height</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">new_width</span><span class="p">):</span>
+            <span class="n">old_i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span> <span class="o">/</span> <span class="n">scale_factor</span><span class="p">)</span>
+            <span class="n">old_j</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">j</span> <span class="o">/</span> <span class="n">scale_factor</span><span class="p">)</span>
+
+            <span class="n">old_i</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">old_i</span><span class="p">,</span> <span class="n">height</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">old_j</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">old_j</span><span class="p">,</span> <span class="n">width</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">resized_img</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="n">old_i</span><span class="p">,</span> <span class="n">old_j</span><span class="p">]</span>
+
+
+    <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">resized_img</span><span class="p">)</span></div>
 
 </pre></div>
 

@@ -1,4 +1,4 @@
-## Console usage
+# Console usage
 
 ``` {eval-rst}
 .. automodule:: example.console

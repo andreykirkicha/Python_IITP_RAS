@@ -14,6 +14,9 @@ def bilinear_interpolation(img, scale_factor):
         :mod:`PIL.Image` - resized image.
     """
 
+    if scale_factor <= 0:
+        raise ValueError("Scale factor must be greater than zero")
+
     img_array = np.array(img).astype(np.float32)
 
     height, width, channels = img_array.shape
@@ -64,6 +67,9 @@ def nearest_neighbour_interpolation(img, scale_factor):
     Returns:
         :mod:`PIL.Image` - resized image.
     """
+
+    if scale_factor <= 0:
+        raise ValueError("Scale factor must be greater than zero")
 
     img_array = np.array(img)
 

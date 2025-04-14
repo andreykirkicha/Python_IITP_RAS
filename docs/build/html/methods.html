@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Reference" href="reference.html" />
-    <link rel="prev" title="Python IITP RAS" href="index.html" /> 
+    <link rel="next" title="Console usage" href="cli.html" />
+    <link rel="prev" title="API reference" href="reference.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,14 +43,15 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Interpolation methods</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-interpolation.methods">Bilinear interpolation</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="reference.html">API reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Interpolation methods</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#interpolation.methods.bilinear_interpolation"><code class="docutils literal notranslate"><span class="pre">bilinear_interpolation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interpolation.methods.nearest_neighbour_interpolation"><code class="docutils literal notranslate"><span class="pre">nearest_neighbour_interpolation()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">Console usage</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
@@ -68,6 +69,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="reference.html">API reference</a></li>
       <li class="breadcrumb-item active">Interpolation methods</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/methods.md.txt" rel="nofollow"> View page source</a>
@@ -83,20 +85,34 @@
 <p>This project has several interpolation methods implemented. It includes:</p>
 <ul class="simple">
 <li><p>Bilinear interpolation</p></li>
-<li><p>…</p></li>
+<li><p>Nearest neighbour interpolation</p></li>
 </ul>
-<section id="module-interpolation.methods">
-<span id="bilinear-interpolation"></span><h2>Bilinear interpolation<a class="headerlink" href="#module-interpolation.methods" title="Link to this heading"></a></h2>
-<dl class="py function">
+<dl class="py function" id="module-interpolation.methods">
 <dt class="sig sig-object py" id="interpolation.methods.bilinear_interpolation">
-<span class="sig-prename descclassname"><span class="pre">interpolation.methods.</span></span><span class="sig-name descname"><span class="pre">bilinear_interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_height</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/interpolation/methods.html#bilinear_interpolation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#interpolation.methods.bilinear_interpolation" title="Link to this definition"></a></dt>
-<dd><p>Bilinear interpolation algorithm for images.</p>
+<span class="sig-prename descclassname"><span class="pre">interpolation.methods.</span></span><span class="sig-name descname"><span class="pre">bilinear_interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/interpolation/methods.html#bilinear_interpolation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#interpolation.methods.bilinear_interpolation" title="Link to this definition"></a></dt>
+<dd><p>Performs bilinear image interpolation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>img</strong> (<code class="xref py py-mod docutils literal notranslate"><span class="pre">PIL.image</span></code>) – Original image.</p></li>
-<li><p><strong>new_width</strong> (<code class="xref py py-mod docutils literal notranslate"><span class="pre">int</span></code>) – Desired width of the resized image.</p></li>
-<li><p><strong>new_height</strong> (<code class="xref py py-mod docutils literal notranslate"><span class="pre">int</span></code>) – Desired height of the resized image.</p></li>
+<li><p><strong>img</strong> (<code class="xref py py-mod docutils literal notranslate"><span class="pre">PIL.Image</span></code>) – Original image.</p></li>
+<li><p><strong>scale_factor</strong> (<code class="xref py py-mod docutils literal notranslate"><span class="pre">float</span></code>) – Scaling factor.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">PIL.Image</span></code> - resized image.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="interpolation.methods.nearest_neighbour_interpolation">
+<span class="sig-prename descclassname"><span class="pre">interpolation.methods.</span></span><span class="sig-name descname"><span class="pre">nearest_neighbour_interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/interpolation/methods.html#nearest_neighbour_interpolation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#interpolation.methods.nearest_neighbour_interpolation" title="Link to this definition"></a></dt>
+<dd><p>Performs nearest neighbor image interpolation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> (<code class="xref py py-mod docutils literal notranslate"><span class="pre">PIL.Image</span></code>) – Original image.</p></li>
+<li><p><strong>scale_factor</strong> (<code class="xref py py-mod docutils literal notranslate"><span class="pre">float</span></code>) – Scaling factor.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -106,14 +122,13 @@
 </dd></dl>
 
 </section>
-</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Python IITP RAS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="reference.html" class="btn btn-neutral float-right" title="Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="reference.html" class="btn btn-neutral float-left" title="API reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cli.html" class="btn btn-neutral float-right" title="Console usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -2,9 +2,7 @@
 
 This project has several interpolation methods implemented. It includes:
 - Bilinear interpolation
-- ...
-
-## Bilinear interpolation
+- Nearest neighbour interpolation
 
 ``` {eval-rst}
 .. automodule:: interpolation.methods

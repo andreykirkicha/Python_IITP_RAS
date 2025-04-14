@@ -1,7 +1,10 @@
 import click
 from PIL import Image
 
-from interpolation.methods import *
+from interpolation import methods
+
+bilinear_interpolation = methods.bilinear_interpolation
+nearest_neighbour_interpolation = methods.nearest_neighbour_interpolation
 
 
 @click.command()
@@ -18,15 +21,15 @@ from interpolation.methods import *
 @click.option(
     "--method",
     default="bilinear",
-    help="Interpolation method: bilinear, nearest_neighbour"
+    help="Interpolation method: bilinear, nearest_neighbour",
 )
 @click.option(
-    "--scale-ratio",
+    "--scale-factor",
     default=1,
-    help="Scale ratio :mod:`SR`: :mod:`new width` = :mod:`SR` * :mod:`width`,\n"
-    ":mod:`new height` = :mod:`SR` * :mod:`height`",
+    help="Scale factor :mod:`SF`: :mod:`new width` = :mod:`SF` * :mod:`width`,\n"
+    ":mod:`new height` = :mod:`SF` * :mod:`height`",
 )
-def usage(file_path, result_path, method, scale_ratio):
+def usage(file_path, result_path, method, scale_factor):
     image = Image.open(file_path)
 
     if method == "bilinear":
@@ -34,7 +37,7 @@ def usage(file_path, result_path, method, scale_ratio):
     elif method == "nearest_neighbour":
         interpolation = nearest_neighbour_interpolation
 
-    res_image = interpolation(image, scale_ratio)
+    res_image = interpolation(image, scale_factor)
     res_image.save(result_path)
 
 
