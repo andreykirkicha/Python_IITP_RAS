@@ -1,4 +1,5 @@
 import timeit
+
 from matplotlib import pyplot as plt
 from PIL import Image
 
@@ -8,39 +9,51 @@ bilinear_interpolation = methods.bilinear_interpolation
 nearest_neighbour_interpolation = methods.nearest_neighbour_interpolation
 
 
-def performance_scale_factor(file_path, method, method_name):
+def performance_scale_factor(file_path, interpolation_methods):
     image = Image.open(file_path)
 
-    interpolation = method
+    print(">>> Dependency on scale factor")
+
     scale_factor_list = [0.1, 0.5, 1, 2]
-    T_list = []
     n = 1
 
-    print(f">>> Method: {method_name}\n")
+    plt.figure()
 
-    for scale_factor in scale_factor_list:
-        print("    Scale factor: ", scale_factor)
-        T = timeit.timeit(lambda: interpolation(image, scale_factor), number=n) / n
-        T_list.append(T)
-        print(f"    Execution time: {T:.3f} ({n} iterations)\n")
+    for method_name, method in interpolation_methods.items():
+        print(f">>> Method: {method_name}\n")
+        T_list = []
 
-    return scale_factor_list, T_list
+        for scale_factor in scale_factor_list:
+            print("    Scale factor: ", scale_factor)
+            T = (
+                timeit.timeit(
+                    lambda interpolation=method, ratio=scale_factor: interpolation(
+                        image, ratio
+                    ),
+                    number=n,
+                )
+                / n
+            )
+            T_list.append(T)
+            print(f"    Execution time: {T:.3f} ({n} iterations)\n")
+
+        plt.plot(scale_factor_list, T_list, "o-", label=method_name)
+
+    plt.xlabel("Scale factor")
+    plt.ylabel("Time, s")
+    plt.title("Performance of interpolation methods on different scale factors")
+    plt.grid()
+    plt.legend()
+    plt.savefig("plots/performance_scale_factor.jpg")
 
 
-file_path = "example/example.jpg"
-interpolation_methods = {'Bilinear interpolation': bilinear_interpolation, 
-                         'Nearest neighbour interpolation': nearest_neighbour_interpolation}
+if __name__ == "__main__":
+    file_path = "example/example.jpg"
+    interpolation_methods = {
+        "Bilinear interpolation": bilinear_interpolation,
+        "Nearest neighbour interpolation": nearest_neighbour_interpolation,
+    }
 
-print(">>> Testing performance...")
+    print(">>> Testing performance...\n")
 
-fig = plt.figure()
-for method_name, interpolation in interpolation_methods.items():
-    scale_factor_list, T_list = performance_scale_factor(file_path, interpolation, method_name)
-    plt.plot(scale_factor_list, T_list, 'o-', label=method_name)
-
-plt.xlabel("Scale factor")
-plt.ylabel("Time, s")
-plt.title("Performance of interpolation methods on different scale factors")
-plt.grid()
-plt.legend()
-plt.savefig("plots/performance_scale_factor.jpg")
+    performance_scale_factor(file_path, interpolation_methods)
