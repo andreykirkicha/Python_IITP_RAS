@@ -3,8 +3,8 @@ import nox_poetry
 from nox import Session
 
 package = "interpolation"
-nox.options.sessions = "linter", "formatter", "pytest", "documentation"
-# nox.options.sessions = ["performance"]
+# nox.options.sessions = "linter", "formatter", "pytest", "documentation"
+nox.options.sessions = ["documentation"]
 locations = "interpolation", "example", "docs", "tests", "plots"
 
 

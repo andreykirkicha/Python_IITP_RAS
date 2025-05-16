@@ -7,6 +7,7 @@ The project contains some useful image interpolation methods implemented as modu
 ``` {toctree}
 :maxdepth: 2
 reference.md
+performance.md
 license.md
 ```
 
@@ -18,8 +19,6 @@ Run this command in your terminal from the project directory:
 ``` {code-block} console
    $ poetry install
 ```
-
-## License
 
 ## Indices and tables
 

@@ -27,7 +27,7 @@ example = "example.console:usage"
 
 [tool.ruff.lint]
 select = ["E", "F", "B", "UP", "SIM", "I"]
-ignore = ["F401"]
+ignore = []
 fixable = ["ALL"]
 unfixable = []
 
