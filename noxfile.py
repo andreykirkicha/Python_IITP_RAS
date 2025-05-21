@@ -40,6 +40,8 @@ def documentation(session: Session) -> None:
                     "sphinx_click",
                     "myst_parser",
                     "linkify-it-py")
+    session.install("Pillow",
+                    "numpy")
     
     session.run("python", "-c", "import sys; sys.path.insert(0, '.')")
     session.run("sphinx-build", "-M", "html", "docs/source/", "docs/build/")

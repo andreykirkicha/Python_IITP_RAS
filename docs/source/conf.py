@@ -6,10 +6,14 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-import sys
-from pathlib import Path
+# import sys
+# from pathlib import Path
 
-sys.path.insert(0, str(Path("../..")))
+# sys.path.insert(0, str(Path("../..")))
+
+import os
+import sys
+sys.path.insert(0, os.path.abspath('../..'))
 
 project = "Python IITP RAS"
 copyright = "2025, Andrey Kirkicha"
