@@ -76,16 +76,16 @@
 
 <div class="viewcode-block" id="bilinear_interpolation">
 <a class="viewcode-back" href="../../methods.html#interpolation.methods.bilinear_interpolation">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">bilinear_interpolation</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">bilinear_interpolation</span><span class="p">(</span><span class="n">img</span><span class="p">:</span> <span class="n">Image</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Performs bilinear image interpolation.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        img (:mod:`PIL.Image`): Original image.</span>
-<span class="sd">        scale_factor (:mod:`float`): Scaling factor.</span>
+<span class="sd">        img (:class:`PIL.Image.Image`): Original image.</span>
+<span class="sd">        scale_factor (:obj:`float`): Scaling factor.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        :mod:`PIL.Image` - resized image.</span>
+<span class="sd">        :class:`PIL.Image.Image` - resized image.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">scale_factor</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
@@ -133,16 +133,16 @@
 
 <div class="viewcode-block" id="nearest_neighbour_interpolation">
 <a class="viewcode-back" href="../../methods.html#interpolation.methods.nearest_neighbour_interpolation">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">nearest_neighbour_interpolation</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">nearest_neighbour_interpolation</span><span class="p">(</span><span class="n">img</span><span class="p">:</span> <span class="n">Image</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Performs nearest neighbor image interpolation.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        img (:mod:`PIL.Image`): Original image.</span>
-<span class="sd">        scale_factor (:mod:`float`): Scaling factor.</span>
+<span class="sd">        img (:class:`PIL.Image.Image`): Original image.</span>
+<span class="sd">        scale_factor (:obj:`float`): Scaling factor.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        :mod:`PIL.Image` - resized image.</span>
+<span class="sd">        :class:`PIL.Image.Image` - resized image.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">scale_factor</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>

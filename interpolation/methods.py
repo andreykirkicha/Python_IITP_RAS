@@ -2,16 +2,16 @@ import numpy as np
 from PIL import Image
 
 
-def bilinear_interpolation(img, scale_factor):
+def bilinear_interpolation(img: Image, scale_factor: float) -> Image:
     """
     Performs bilinear image interpolation.
 
     Args:
-        img (:mod:`PIL.Image`): Original image.
-        scale_factor (:mod:`float`): Scaling factor.
+        img (:class:`PIL.Image.Image`): Original image.
+        scale_factor (:obj:`float`): Scaling factor.
 
     Returns:
-        :mod:`PIL.Image` - resized image.
+        :class:`PIL.Image.Image` - resized image.
     """
 
     if scale_factor <= 0:
@@ -56,16 +56,16 @@ def bilinear_interpolation(img, scale_factor):
     return Image.fromarray(resized_img.astype(np.uint8))
 
 
-def nearest_neighbour_interpolation(img, scale_factor):
+def nearest_neighbour_interpolation(img: Image, scale_factor: float) -> Image:
     """
     Performs nearest neighbor image interpolation.
 
     Args:
-        img (:mod:`PIL.Image`): Original image.
-        scale_factor (:mod:`float`): Scaling factor.
+        img (:class:`PIL.Image.Image`): Original image.
+        scale_factor (:obj:`float`): Scaling factor.
 
     Returns:
-        :mod:`PIL.Image` - resized image.
+        :class:`PIL.Image.Image` - resized image.
     """
 
     if scale_factor <= 0:

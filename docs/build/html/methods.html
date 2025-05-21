@@ -48,8 +48,11 @@
 <li class="toctree-l1 current"><a class="reference internal" href="reference.html">API reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Interpolation methods</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#bilinear-interpolation">Bilinear interpolation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#interpolation.methods.bilinear_interpolation"><code class="docutils literal notranslate"><span class="pre">bilinear_interpolation()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#interpolation.methods.nearest_neighbour_interpolation"><code class="docutils literal notranslate"><span class="pre">nearest_neighbour_interpolation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementation">Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#nearest-neighbour-interpolation">Nearest neighbour interpolation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Implementation</a></li>
 </ul>
 </li>
 </ul>
@@ -96,7 +99,7 @@
 <section id="bilinear-interpolation">
 <h2>Bilinear interpolation<a class="headerlink" href="#bilinear-interpolation" title="Link to this heading"></a></h2>
 <p>This method is used for interpolating functions of two variables (e.g., x and y) using repeated linear interpolation. It is usually applied to functions sampled on a 2D rectilinear grid.</p>
-<p>Suppose you have a rectangular grid with points <span class="math notranslate nohighlight">\((x_1, y_1)\)</span>, <span class="math notranslate nohighlight">\((x_2, y_1)\)</span>, <span class="math notranslate nohighlight">\((x_1, y_2)\)</span>, <span class="math notranslate nohighlight">\((x_2, y_2)\)</span>, and you want to estimate the value at point <span class="math notranslate nohighlight">\((x, y)\)</span> where <span class="math notranslate nohighlight">\(x_1 &lt;= x &lt;= x_2\)</span> and <span class="math notranslate nohighlight">\(y_1 &lt;= y &lt;= y_2\)</span>. The known values at these points are:</p>
+<p>Suppose you have a rectangular grid with points <span class="math notranslate nohighlight">\((x_1, y_1)\)</span>, <span class="math notranslate nohighlight">\((x_2, y_1)\)</span>, <span class="math notranslate nohighlight">\((x_1, y_2)\)</span>, <span class="math notranslate nohighlight">\((x_2, y_2)\)</span>, and you want to estimate the value at point <span class="math notranslate nohighlight">\((x, y)\)</span> where <span class="math notranslate nohighlight">\(x_1 \leq x \leq x_2\)</span> and <span class="math notranslate nohighlight">\(y_1 \leq y \leq y_2\)</span>. The known values at these points are:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f(x_1,y_1) = Q_{11}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(f(x_2,y_1) = Q_{21}\)</span></p></li>
@@ -105,24 +108,34 @@
 </ul>
 <p>Then,</p>
 <div class="math notranslate nohighlight">
-\[ f(x, y) = \frac{(x_2 - x)(y_2 - y)}{(x_2 - x_1)(y_2 - y_1)}Q_{11} + \frac{(x - x_1)(y_2 - y)}{(x_2 - x_1)(y_2 - y_1)}Q_{21} + \frac{(x_2 - x)(y - y_1)}{(x_2 - x_1)(y_2 - y_1)}Q_{12} + \frac{(x - x_1)(y - y_1)}{(x_2 - x_1)(y_2 - y_1)}Q_{22}. \]</div>
-<dl class="py function" id="module-interpolation.methods">
+\[\begin{split} f(x, y) = \frac{(x_2 - x)(y_2 - y)}{(x_2 - x_1)(y_2 - y_1)}Q_{11} + \frac{(x - x_1)(y_2 - y)}{(x_2 - x_1)(y_2 - y_1)}Q_{21} + \\
+\frac{(x_2 - x)(y - y_1)}{(x_2 - x_1)(y_2 - y_1)}Q_{12} + \frac{(x - x_1)(y - y_1)}{(x_2 - x_1)(y_2 - y_1)}Q_{22}. \end{split}\]</div>
+<section id="implementation">
+<h3>Implementation<a class="headerlink" href="#implementation" title="Link to this heading"></a></h3>
+<dl class="py function">
 <dt class="sig sig-object py" id="interpolation.methods.bilinear_interpolation">
 <span class="sig-prename descclassname"><span class="pre">interpolation.methods.</span></span><span class="sig-name descname"><span class="pre">bilinear_interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/interpolation/methods.html#bilinear_interpolation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#interpolation.methods.bilinear_interpolation" title="Link to this definition"></a></dt>
 <dd><p>Performs bilinear image interpolation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>img</strong> (<code class="xref py py-mod docutils literal notranslate"><span class="pre">PIL.Image</span></code>) – Original image.</p></li>
-<li><p><strong>scale_factor</strong> (<code class="xref py py-mod docutils literal notranslate"><span class="pre">float</span></code>) – Scaling factor.</p></li>
+<li><p><strong>img</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PIL.Image.Image</span></code>) – Original image.</p></li>
+<li><p><strong>scale_factor</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code>) – Scaling factor.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">PIL.Image</span></code> - resized image.</p>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">PIL.Image.Image</span></code> - resized image.</p>
 </dd>
 </dl>
 </dd></dl>
 
+</section>
+</section>
+<section id="nearest-neighbour-interpolation">
+<h2>Nearest neighbour interpolation<a class="headerlink" href="#nearest-neighbour-interpolation" title="Link to this heading"></a></h2>
+<p>This method is used for multidimensional interpolation. Selects the value of the nearest point and does not consider the values of neighboring points at all.</p>
+<section id="id1">
+<h3>Implementation<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="interpolation.methods.nearest_neighbour_interpolation">
 <span class="sig-prename descclassname"><span class="pre">interpolation.methods.</span></span><span class="sig-name descname"><span class="pre">nearest_neighbour_interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/interpolation/methods.html#nearest_neighbour_interpolation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#interpolation.methods.nearest_neighbour_interpolation" title="Link to this definition"></a></dt>
@@ -130,16 +143,17 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>img</strong> (<code class="xref py py-mod docutils literal notranslate"><span class="pre">PIL.Image</span></code>) – Original image.</p></li>
-<li><p><strong>scale_factor</strong> (<code class="xref py py-mod docutils literal notranslate"><span class="pre">float</span></code>) – Scaling factor.</p></li>
+<li><p><strong>img</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PIL.Image.Image</span></code>) – Original image.</p></li>
+<li><p><strong>scale_factor</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code>) – Scaling factor.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">PIL.Image</span></code> - resized image.</p>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">PIL.Image.Image</span></code> - resized image.</p>
 </dd>
 </dl>
 </dd></dl>
 
+</section>
 </section>
 </section>
 

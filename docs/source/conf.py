@@ -46,7 +46,7 @@ html_static_path = ["_static"]
 # -- Options for autodoc ----------------------------------------------------
 
 autodoc_member_order = "bysource"
-autodoc_typehints = "description"
+autodoc_typehints = "none"
 
 # -- Options for MyST ---------------------------------------------------
 
