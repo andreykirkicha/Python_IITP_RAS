@@ -5,6 +5,7 @@ from interpolation import methods
 
 bilinear_interpolation = methods.bilinear_interpolation
 nearest_neighbour_interpolation = methods.nearest_neighbour_interpolation
+bicubic_interpolation = methods.bicubic_interpolation
 
 
 @click.command()
@@ -21,7 +22,7 @@ nearest_neighbour_interpolation = methods.nearest_neighbour_interpolation
 @click.option(
     "--method",
     default="bilinear",
-    help="Interpolation method: bilinear, nearest_neighbour",
+    help="Interpolation method: bilinear, nearest_neighbour, bicubic",
 )
 @click.option(
     "--scale-factor",
@@ -36,6 +37,8 @@ def usage(file_path, result_path, method, scale_factor):
         interpolation = bilinear_interpolation
     elif method == "nearest_neighbour":
         interpolation = nearest_neighbour_interpolation
+    elif method == "bicubic":
+        interpolation = bicubic_interpolation
 
     res_image = interpolation(image, scale_factor)
     res_image.save(result_path)

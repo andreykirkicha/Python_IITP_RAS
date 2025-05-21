@@ -5,6 +5,7 @@ from interpolation import methods
 
 bilinear_interpolation = methods.bilinear_interpolation
 nearest_neighbour_interpolation = methods.nearest_neighbour_interpolation
+bicubic_interpolation = methods.bicubic_interpolation
 
 
 @pytest.mark.parametrize(
@@ -18,6 +19,10 @@ nearest_neighbour_interpolation = methods.nearest_neighbour_interpolation
         (nearest_neighbour_interpolation, 100, 100, 0.5),
         (nearest_neighbour_interpolation, 100, 100, 1),
         (nearest_neighbour_interpolation, 100, 100, 1.005),
+        (bicubic_interpolation, 100, 100, 2),
+        (bicubic_interpolation, 100, 100, 0.5),
+        (bicubic_interpolation, 100, 100, 1),
+        (bicubic_interpolation, 100, 100, 1.005),
     ],
 )
 def test_new_imgsize(interpolation, w, h, scale_factor):
@@ -32,7 +37,7 @@ def test_new_imgsize(interpolation, w, h, scale_factor):
 
 @pytest.mark.parametrize(
     "interpolation",
-    [bilinear_interpolation, nearest_neighbour_interpolation],
+    [bilinear_interpolation, nearest_neighbour_interpolation, bicubic_interpolation],
 )
 def test_pixel_values_in_bounds(interpolation):
     img = Image.new("RGB", (2, 2), color="black")
@@ -50,7 +55,7 @@ def test_pixel_values_in_bounds(interpolation):
 
 @pytest.mark.parametrize(
     "interpolation",
-    [bilinear_interpolation, nearest_neighbour_interpolation],
+    [bilinear_interpolation, nearest_neighbour_interpolation, bicubic_interpolation],
 )
 def test_invalid_image_type(interpolation):
     with pytest.raises(ValueError):
@@ -59,7 +64,7 @@ def test_invalid_image_type(interpolation):
 
 @pytest.mark.parametrize(
     "interpolation",
-    [bilinear_interpolation, nearest_neighbour_interpolation],
+    [bilinear_interpolation, nearest_neighbour_interpolation, bicubic_interpolation],
 )
 def test_zero_scale_factor(interpolation):
     img = Image.new("RGB", (100, 100), color="white")
@@ -69,7 +74,7 @@ def test_zero_scale_factor(interpolation):
 
 @pytest.mark.parametrize(
     "interpolation",
-    [bilinear_interpolation, nearest_neighbour_interpolation],
+    [bilinear_interpolation, nearest_neighbour_interpolation, bicubic_interpolation],
 )
 def test_negative_scale_factor(interpolation):
     img = Image.new("RGB", (100, 100), color="white")

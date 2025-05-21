@@ -1,5 +1,6 @@
 import timeit
 
+import numpy as np
 from matplotlib import pyplot as plt
 from PIL import Image
 
@@ -7,6 +8,7 @@ from interpolation import methods
 
 bilinear_interpolation = methods.bilinear_interpolation
 nearest_neighbour_interpolation = methods.nearest_neighbour_interpolation
+bicubic_interpolation = methods.bicubic_interpolation
 
 
 def performance_scale_factor(file_path, interpolation_methods):
@@ -24,6 +26,9 @@ def performance_scale_factor(file_path, interpolation_methods):
         T_list = []
 
         for scale_factor in scale_factor_list:
+            if method == bicubic_interpolation and scale_factor > 0.5:
+                T_list.append(np.inf)
+                continue
             print("    Scale factor: ", scale_factor)
             T = (
                 timeit.timeit(
@@ -52,6 +57,7 @@ if __name__ == "__main__":
     interpolation_methods = {
         "Bilinear interpolation": bilinear_interpolation,
         "Nearest neighbour interpolation": nearest_neighbour_interpolation,
+        "Bicubic interpolation": bicubic_interpolation,
     }
 
     print(">>> Testing performance...\n")
