@@ -170,16 +170,18 @@
 
 
 
+<div class="viewcode-block" id="bicubic_interpolation">
+<a class="viewcode-back" href="../../methods.html#interpolation.methods.bicubic_interpolation">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">bicubic_interpolation</span><span class="p">(</span><span class="n">img</span><span class="p">:</span> <span class="n">Image</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Performs bicubic image interpolation.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        img (:class:PIL.Image.Image): Original image.</span>
-<span class="sd">        scale_factor (:obj:float): Scaling factor.</span>
+<span class="sd">        img (:class:`PIL.Image.Image`): Original image.</span>
+<span class="sd">        scale_factor (:obj:`float`): Scaling factor.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        :class:PIL.Image.Image - resized image.</span>
+<span class="sd">        :class:`PIL.Image.Image` - resized image.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">scale_factor</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
@@ -245,7 +247,8 @@
 
                 <span class="n">resized_img</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">ch</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">by</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">bx</span><span class="p">)),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">resized_img</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">resized_img</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">))</span></div>
+
 </pre></div>
 
            </div>

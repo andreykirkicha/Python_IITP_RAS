@@ -97,11 +97,11 @@ def bicubic_interpolation(img: Image, scale_factor: float) -> Image:
     Performs bicubic image interpolation.
 
     Args:
-        img (:class:PIL.Image.Image): Original image.
-        scale_factor (:obj:float): Scaling factor.
+        img (:class:`PIL.Image.Image`): Original image.
+        scale_factor (:obj:`float`): Scaling factor.
 
     Returns:
-        :class:PIL.Image.Image - resized image.
+        :class:`PIL.Image.Image` - resized image.
     """
 
     if scale_factor <= 0:
