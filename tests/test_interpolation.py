@@ -1,3 +1,4 @@
+import numpy as np
 import pytest
 from PIL import Image
 
@@ -51,6 +52,24 @@ def test_pixel_values_in_bounds(interpolation):
     pixel = list(resized_img.getpixel((1, 1)))
 
     assert all(0 <= channel <= 255 for channel in pixel)
+
+
+@pytest.mark.parametrize(
+    "interpolation",
+    [bilinear_interpolation, nearest_neighbour_interpolation, bicubic_interpolation],
+)
+def test_close_pixel_values(interpolation):
+    img = Image.new("RGB", (2, 2), color="black")
+    img.putpixel((0, 0), (10, 20, 30))
+    img.putpixel((0, 1), (40, 50, 60))
+    img.putpixel((1, 0), (70, 80, 90))
+    img.putpixel((1, 1), (100, 110, 120))
+
+    resized_img = interpolation(img, 2)
+    result = np.array(resized_img)
+
+    assert np.allclose(result[0, 0], [10, 20, 30], atol=10)
+    assert np.allclose(result[-1, -1], [100, 110, 120], atol=10)
 
 
 @pytest.mark.parametrize(

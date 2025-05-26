@@ -26,7 +26,7 @@ bicubic_interpolation = methods.bicubic_interpolation
 )
 @click.option(
     "--scale-factor",
-    default=1,
+    default=1.0,
     help="Scale factor :mod:`SF`: :mod:`new width` = :mod:`SF` * :mod:`width`,\n"
     ":mod:`new height` = :mod:`SF` * :mod:`height`",
 )

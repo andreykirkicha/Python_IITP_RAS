@@ -3,7 +3,7 @@ import nox_poetry
 from nox import Session
 
 package = "interpolation"
-# nox.options.sessions = "linter", "formatter", "pytest", "performance", "documentation"
+# nox.options.sessions = "linter", "formatter", "pytest", "documentation"
 nox.options.sessions = ["documentation"]
 locations = "interpolation", "example", "docs", "tests", "plots"
 
@@ -49,7 +49,8 @@ def documentation(session: Session) -> None:
                     "sphinx_rtd_theme",
                     "sphinx_click",
                     "myst_parser",
-                    "linkify-it-py")
+                    "linkify-it-py",
+                    "matplotlib")
     session.install("Pillow",
                     "numpy")
     

@@ -31,6 +31,7 @@ extensions = [
     "sphinx_rtd_theme",
     "sphinx_click",  # For documenting Click command-line interfaces
     "myst_parser",
+    "matplotlib.sphinxext.plot_directive",
 ]
 
 templates_path = ["_templates"]
